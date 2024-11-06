@@ -19,7 +19,7 @@ Scrapes CAT-SOOP to calculate predicted grades for students in some MIT course 6
 > \- Adam Hartz, circa 2024
 
 CAT-SOOP is a web-based LMS that hosts a variety of course 6 (EECS) classes
-at MIT. For most classes, cumulative grades are unfortunately not displayed the student.
+at MIT. For most classes, cumulative grades are unfortunately not displayed to the student.
 This could be because the grading system involves a series of complex
 modifications applied at the end of the semester (I'm looking at you 6.390). Another good
 reason is to dissuade students from doing tasks purely for the sake of maintaining
