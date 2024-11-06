@@ -84,11 +84,15 @@ class ScoreCalculator():
         out_score = parser.calculate_score(score_data)
         return out_score
 
-    def report_all(self) -> str:
+    def report_all(self, debug=False) -> str:
         """
         Returns a report of all grades for classes in self.tokens.
         """
-        raise NotImplementedError
+        out = [] 
+        for course in self.tokens:
+            out_score = self.calculate_one(course, debug)
+            out.append(self.generate_full_report(course, out_score))
+        return "\n".join(out)
         
 if __name__ == "__main__":
     tokens = {}
@@ -97,10 +101,6 @@ if __name__ == "__main__":
             code, token = line.strip().split(' ')
             tokens[code] = token
     calc = ScoreCalculator(tokens)
-    score = calc.calculate_one('6.200')
-    report = calc.generate_full_report('6.200', score)
-    print(report)
-    score = calc.calculate_one('6.101')
-    report = calc.generate_full_report('6.101', score)
-    print(report)
+    full_report = calc.report_all()
+    print(full_report)
 
