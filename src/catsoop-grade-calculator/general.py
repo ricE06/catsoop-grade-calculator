@@ -4,12 +4,14 @@ Provides a class to manage the different parsers.
 
 from parsers.request import CatsoopRequests
 from parsers.circuits import CircuitsParser
+from parsers.py import PyParser
 from typing import Optional
+import pprint
 
 class ScoreCalculator():
 
-    parser_index = {'6.200': CircuitsParser,}
-                    #'6.101': PyParser}
+    parser_index = {'6.200': CircuitsParser,
+                    '6.101': PyParser}
 
     def __init__(self, tokens: dict[str, str]) -> None:
         self.tokens = tokens
@@ -60,9 +62,13 @@ class ScoreCalculator():
             score = round(100*by_category[category], 2)
             category_text += f"\n....{category}{'.'*remaining_dots}{score}%"
 
-        return preface + alt_score_text + category_text
+        # LINK THE URL
+        url = CatsoopRequests.get_url(class_code)
+        appendum = f"\n{url}"
 
-    def calculate_one(self, class_code: str) -> dict:
+        return preface + alt_score_text + category_text + appendum
+
+    def calculate_one(self, class_code: str, debug=False) -> dict:
         """
         Calculates the grade for one class. 
         """
@@ -72,24 +78,29 @@ class ScoreCalculator():
         token = self.tokens[class_code]
         raw_data = CatsoopRequests.request_data(token, class_code=class_code)
         preprocessed = CatsoopRequests.preprocess_data(raw_data.text)
+        if debug: pprint.pp(preprocessed)
         parser = ScoreCalculator.parser_index[class_code]()
         score_data = parser.parse_html(preprocessed)
         out_score = parser.calculate_score(score_data)
         return out_score
-        
 
-    def calculate_all(self) -> str:
+    def report_all(self) -> str:
         """
-        Returns the expected overall grade.
+        Returns a report of all grades for classes in self.tokens.
         """
         raise NotImplementedError
         
 if __name__ == "__main__":
+    tokens = {}
     with open('token.txt', 'r') as f:
-        circuits_token = f.readline()
-    tokens = {'6.200': circuits_token}
+        for line in f:
+            code, token = line.strip().split(' ')
+            tokens[code] = token
     calc = ScoreCalculator(tokens)
     score = calc.calculate_one('6.200')
     report = calc.generate_full_report('6.200', score)
+    print(report)
+    score = calc.calculate_one('6.101')
+    report = calc.generate_full_report('6.101', score)
     print(report)
 

@@ -97,7 +97,9 @@ class CircuitsParser(Parser):
 
 if __name__ == "__main__":
     with open('../token.txt', 'r') as f:
-        token = f.readline()
+        code_1, token_1 = f.readline().split(' ')
+        code_2, token_2 = f.readline().split(' ')
+    token = token_1
     raw_data = CatsoopRequests.request_data(token, class_code='6.200')
     preprocessed = CatsoopRequests.preprocess_data(raw_data.text)
     pprint.pp(preprocessed)

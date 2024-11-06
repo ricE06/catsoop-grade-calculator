@@ -29,7 +29,9 @@ class Parser():
                           default_max: Optional[float] = None,
                           return_name: Optional[bool] = False,
                           keyword: Optional[str] = None,
-                          exact_case: Optional[bool] = False) -> Optional[str]:
+                          exact_case: Optional[bool] = False,
+                          delimiter: Optional[str] = ":",
+                          binary_x_string: Optional[str] = "\x98") -> Optional[str]:
         """
         Mutates the input score_dict to add an entry.
         Score_type is a string and takes one of 'fraction',
@@ -47,9 +49,9 @@ class Parser():
         """
 
         def find_assignment_name():
-            if ':' not in line:
+            if delimiter not in line:
                 return assignment_type
-            return line.split(':')[0]
+            return line.split(delimiter)[0]
 
         # check if line contains a score
         if keyword is None: keyword = assignment_type
@@ -59,7 +61,7 @@ class Parser():
 
         # process the line for numbers, assign that to score
         if score_type == 'binary':
-            raw_score = 1.0 if line[-1] == '\x94' else 0.0
+            raw_score = 0.0 if line[-1] == binary_x_string else 1.0
             default_max = 1.0
         else:
             all_nums = CatsoopRequests.get_numbers(line)
@@ -98,7 +100,9 @@ class Parser():
             if cur_type is None:
                 continue
             add_func = headers[cur_type].get('func', self.add_score_to_dict)
-            add_func(out, line, *headers[cur_type]['args'], **headers[cur_type]['kwargs'])
+            args = headers[cur_type].get('args', [])
+            kwargs = headers[cur_type].get('kwargs', {})
+            add_func(out, line, *args, **kwargs)
         return out
 
     def calculate_score(self, score_data: dict[str, list[dict]]) -> float:

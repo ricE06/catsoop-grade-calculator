@@ -16,7 +16,7 @@ class CatsoopRequests():
     base_urls = {'6.101': 'https://py.mit.edu/fall24/progress',
                  '6.200': 'https://circuits.mit.edu/F24/progress'}
 
-    default_kept_strs = ['<h1>', '<li>', '<tr><td']
+    default_kept_strs = ['<h', '<li>', '<tr><td', '<p>']
 
     @staticmethod
     def request_data(token: str, class_code: Optional[str] = None, url: Optional[str] = None):
@@ -40,7 +40,7 @@ class CatsoopRequests():
         started = False
         for line in lines:
             if not started:
-                if "<h1>" not in line: # wait for first header
+                if "<h" not in line: # wait for first header
                     continue
                 started = True
             for kept in kept_strs:
