@@ -2,8 +2,8 @@
 Parser for 6.101: Fundamentals of Programming (Python).
 """
 
-from parsers.base_parser import Parser
-from parsers.request import CatsoopRequests
+from .base_parser import Parser
+from .request import CatsoopRequests
 import pprint
 
 class PyParser(Parser):

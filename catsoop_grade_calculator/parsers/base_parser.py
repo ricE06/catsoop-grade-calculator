@@ -3,7 +3,7 @@ Abstract class for the different parsers.
 """
 
 from typing import Optional, Callable
-from parsers.request import CatsoopRequests
+from .request import CatsoopRequests
 
 class Parser():
 

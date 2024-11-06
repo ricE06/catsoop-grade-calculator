@@ -2,8 +2,8 @@
 Parser for 6.200: Circuits and Electronics.
 """
 
-from parsers.request import CatsoopRequests
-from parsers.base_parser import Parser
+from .request import CatsoopRequests
+from .base_parser import Parser
 import pprint
 
 class CircuitsParser(Parser):

@@ -2,9 +2,9 @@
 Provides a class to manage the different parsers.
 """
 
-from parsers.request import CatsoopRequests
-from parsers.circuits import CircuitsParser
-from parsers.py import PyParser
+from .parsers.request import CatsoopRequests
+from .parsers.circuits import CircuitsParser
+from .parsers.py import PyParser
 from typing import Optional
 import pprint
 
