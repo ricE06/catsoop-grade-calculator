@@ -82,14 +82,14 @@ environment. Use `exit()` to get out of that.
 Next, install the package. In your command line, enter the command:
 
 ```
-pip install catsoop-grade-calculator
+pip install catsoop_grade_calculator
 ```
 
 Open your interactive environment again with `python`/`python3`. If you've done
 everything correctly, you should be able to type
 
 ```python
-import catsoop-grade-calculator
+import catsoop_grade_calculator
 ```
 
 and Python won't throw an error. If it goes through, hooray! The package is now
@@ -128,7 +128,7 @@ a grade report for each of your classes. Create it in the same directory
 that you stored your tokens. At the top, first import the package:
 
 ```python
-from catsoop-grade-calculator import ScoreCalculator
+from catsoop_grade_calculator import ScoreCalculator
 ```
 
 Then, we need to give it your tokens. You could store these as variables 
@@ -250,7 +250,7 @@ but extremely cumbersome right now)
  may already be fixed, and you just need to upgrade the package to keep up:
 
 ```
-pip install --upgrade catsoop-grade-calculator
+pip install --upgrade catsoop_grade_calculator
 ```
 
 A word on how the Progress page is actually parsed. The code goes line by line in the html,

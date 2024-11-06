@@ -2,7 +2,7 @@
 Sample code to output grade reports.
 """
 
-from catsoop-grade-calculator import ScoreCalculator
+from catsoop_grade_calculator import ScoreCalculator
 
 tokens = {}
 with open('token.txt', 'r') as file:
