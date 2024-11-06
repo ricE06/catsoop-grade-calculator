@@ -264,5 +264,5 @@ and which type of assignment (pset, lab, test, etc.) it belongs in.
 Hence, small changes to the formatting (adding text, adding assignments, moving around the order)
 won't break the parser. Even changing the names of assignments should be fine, within reason
 (a pset should be identified by "pset", and it wouldn't make sense for them to call it "chicken
-nuggets" anyways). It's always a possiblity, though, and thankfully the code structure allows
+nuggets" anyways). It's always a possibility, though, and thankfully the code structure allows
 quick adaptation to any breaking changes.
