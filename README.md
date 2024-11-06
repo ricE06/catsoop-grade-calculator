@@ -5,28 +5,28 @@ Scrapes CAT-SOOP to calculate predicted grades for students in some MIT course 6
 
 - [Preface](#preface)
 - [Installation and Setup Instructions](#installation-and-setup)
- - [Package Installation](#installing-the-package)
- - [API Tokens](#setting-up-api-tokens)
+  - [Package Installation](#installing-the-package)
+  - [API Tokens](#setting-up-api-tokens)
 - [Want to Contribute?](#contributing)
- - [Adding Courses](#adding-courses)
- - [Adding Features](#adding-features)
- - [Maintainence](#breaking-news)
+  - [Adding Courses](#adding-courses)
+  - [Adding Features](#adding-features)
+  - [Maintainence](#breaking-news)
 
 ## Preface
 > "...\[6.101\] used to have a cumulative scoring system, but this meant
 > that no one ever did the last few labs."
-> - Adam Hartz, circa 2024
+> \- Adam Hartz, circa 2024
 
 CAT-SOOP is a web-based LMS that hosts a variety of course 6 (EECS) classes
 at MIT. For most classes, cumulative grades are unfortunately not displayed the student.
 This could be because the grading system involves a series of complex
 modifications applied at the end of the semester (I'm looking at you 6.390). Another good
-reason is to decentivize students from doing tasks purely for the sake of maintaining
-a grade. I am not here to argue against valid justifications for this choice. But:
+reason is to dissuade students from doing tasks purely for the sake of maintaining
+a grade. I am not here to argue against valid justifications for this choice, *however*:
 
 All of the information needed to calculate a grade is *technically* there.
 
-Enter CATSOOPER, the CATSOOP gradE calculatoR, which will scrape CAT-SOOP for your classes
+Enter **CATSOOPER**, the *CATSOOP gradE calculatoR*, which will scrape CAT-SOOP for your classes
 and calculate your current grades. So whether you're concerned about passing, hoping to 
 stay on a certain letter grade, or you're one of those freshmen on P/NR aspiring to become the next
 Bare Minimum King, feel free to [install this package](#installation-and-setup) and enjoy.
@@ -44,14 +44,15 @@ course page keeps exact values internally). Whenever situations like these occur
 estimate the grade on the *low* side, but don't count on it every time.
 - This package makes a very, *very* volatile set of assumptions. While I tried the scraper
 as robust as I can, it is possible that a formatting change in the "Progress" page may break
-the scraper. It shouldn't reasonably happen (why someone would rename the term "PSet" is beyond me), 
+the scraper. It [shouldn't reasonably happen](#breaking-news)
+(why someone would rename the term "PSet" is beyond me), 
 but it is a possibility.
 - This is a bodge thrown together in the span of a few hours. It is pre-alpha and may contain
 bugs. Use common sense: if the output seems wrong, it probably is wrong. Please [let me know](#contributing)
 of any issues you find.
 
 As of version 0.1.0, CATSOOPER supports scraping for 6.101 and 6.200. If you're in another
-class and would like to see supported added for that, please consider [contributing](#contributing).
+class and would like to see support added for that, please consider [contributing](#adding-classes).
 You don't need to know how to code, but I do need to see the format of the webpage and
 the grading rules.
 
@@ -98,11 +99,11 @@ on your computer, ready to go.
 To actually access your grades, CATSOOPER will need an API token. For *each* of your
 classes, perform the following steps:
 
-- Navigate to course homepage and login with your MIT credentials.
+- Navigate to the course homepage and log in with your MIT credentials.
 - On the top right, click on your username and then click **Settings.**
 - Go to **Manage API Tokens**.
 - Generate a token and follow the instructions on the website. It should be a long
-string containing only numbers and lowercase letters `a` through `f`.
+string containing only numbers and lowercase letters `a-f` (i.e. a hexadecimal number).
 
 **DO NOT SHARE YOUR TOKEN WITH ANYONE!!!** CATSOOPER runs entirely on your local machine,
 and I will not see your token if you use this package.
@@ -234,7 +235,7 @@ demand for them). They are, in no particular order:
 - A shell script and command, rather than calling a Python file
 - The ability to "test" current and future grades (technically possible,
 but extremely cumbersome right now)
- - Storing *all* of the potential assignments and exams in a class to facilitate this
+  - Storing *all* of the potential assignments and exams in a class to facilitate this
 - URL "guessing", so we don't have to update new URLs every semester
 
  If you are interested in helping implement any of these, or have suggestions for
