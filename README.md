@@ -15,6 +15,7 @@ Scrapes CAT-SOOP to calculate predicted grades for students in some MIT course 6
 ## Preface
 > "...\[6.101\] used to have a cumulative scoring system, but this meant
 > that no one ever did the last few labs."
+> 
 > \- Adam Hartz, circa 2024
 
 CAT-SOOP is a web-based LMS that hosts a variety of course 6 (EECS) classes
